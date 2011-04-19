@@ -1,12 +1,15 @@
 #!/usr/bin/env runhaskell
 
+{-# LANGUAGE TypeSynonymInstances #-}
+
 import Genetics
 import Control.Monad (replicateM)
 import Random (randomRIO)
 import Data.List (intercalate)
 import Char (ord, chr)
 
-type Gene = String
+target :: String
+target = "helloworld"
 
 randomChar :: IO Char
 randomChar = do
@@ -14,37 +17,44 @@ randomChar = do
 	let c' = (ord 'a') + c
 	return $ chr c'
 
-randomGene :: IO Gene
-randomGene = replicateM 10 randomChar
+randomGene :: IO String
+randomGene = replicateM (length target) randomChar
 
-mutate :: Gene -> IO Gene
-mutate gene = do
-	index <- randomRIO (0, 9)
-	ch <- randomChar
-	let gene' = (take index gene) ++ [ch] ++ (drop (index + 1) gene)
+rate :: Float
+rate = 1.0 --always mutate
 
-	return gene'
+factor :: Int
+factor = 8
 
-fitness :: Gene -> Float
-fitness gene = (sum $ zipWith (\t g -> if t == g then 1 else 0) "helloworld" gene) / (fromIntegral 10)
+instance Gene String where
+	fitness gene = (sum $ zipWith (\t g -> if t == g then 1 else 0) target gene) / (fromIntegral (length target))
+
+	mutability _ = rate
+
+	advantage _ = factor
+
+	mutate gene = do
+		index <- randomRIO (0, length target - 1)
+		ch <- randomChar
+		let gene' = (take index gene) ++ [ch] ++ (drop (index + 1) gene)
+
+		return gene'
 
 main :: IO ()
 main = do
 	let generations = 10 ^ 4
-	let mutationRate = 1.0
-	let advantage = 8
-	let poolSize = 256
+	let poolSize = 512
 	pool <- replicateM poolSize randomGene
 
-	putStrLn $ "Target: helloworld"
-	putStrLn $ "Mutation rate: " ++ show mutationRate
-	putStrLn $ "Advantage: " ++ show advantage
+	putStrLn $ "Target: " ++ target
+	putStrLn $ "Mutation rate: " ++ show rate
+	putStrLn $ "Advantage: " ++ show factor
 	putStrLn $ "Pool size: " ++ show poolSize
 	putStrLn $ "Running " ++ show generations ++ " generations..."
 
-	pool' <- evolve generations mutationRate advantage fitness mutate pool
+	pool' <- evolve generations pool
 
-	putStrLn $ "Current pool:\n" ++ intercalate "\n" pool	
+	putStrLn $ "Current pool:\n" ++ intercalate "\n" pool'
 
-	let best = head $ orderFitness fitness pool'
+	let best = head $ orderFitness pool'
 	putStrLn $ "Best candidate: " ++ best
