@@ -5,7 +5,6 @@
 import Genetics
 import Control.Monad (replicateM)
 import Random (randomRIO)
-import Data.List (intercalate)
 import Char (ord, chr)
 
 target :: String
@@ -42,7 +41,7 @@ instance Gene String where
 
 main :: IO ()
 main = do
-	let generations = 10 ^ 4
+	let generations = 10 ^ 3
 	let poolSize = 512
 	pool <- replicateM poolSize randomGene
 
@@ -54,7 +53,7 @@ main = do
 
 	pool' <- evolve generations pool
 
-	putStrLn $ "Current pool:\n" ++ intercalate "\n" pool'
+	putStrLn $ "Current pool:\n" ++ unlines pool'
 
 	let best = head $ orderFitness pool'
 	putStrLn $ "Best candidate: " ++ best
