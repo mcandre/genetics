@@ -10,11 +10,11 @@ import Char (ord, chr)
 target :: String
 target = "helloworld"
 
+pick :: [a] -> IO a
+pick xs = (randomRIO (0, length xs - 1)) >>= (return . (xs !!))
+
 randomChar :: IO Char
-randomChar = do
-	c <- randomRIO (0, 25)
-	let c' = (ord 'a') + c
-	return $ chr c'
+randomChar = pick ['a'..'z']
 
 randomGene :: IO String
 randomGene = replicateM (length target) randomChar
@@ -28,14 +28,13 @@ instance Gene String where
 	mutate gene = do
 		index <- randomRIO (0, length target - 1)
 		ch <- randomChar
-		let gene' = (take index gene) ++ [ch] ++ (drop (index + 1) gene)
-		return gene'
+		return $ (take index gene) ++ [ch] ++ (drop (index + 1) gene)
 
-	species pool = numSpecies
+	species _ = numSpecies
 
 main :: IO ()
 main = do
-	let generations = 10000 -- 10 ^ 4
+	let generations = 10 ^ 4
 	pool <- replicateM numSpecies randomGene
 
 	putStrLn $ "Target: " ++ target

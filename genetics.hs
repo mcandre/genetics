@@ -10,7 +10,7 @@ class Gene g where
 	-- How does a gene mutate?
 	mutate :: g -> IO g
 
-	-- How many species will be explored?
+	-- How many species will be explored in each round?
 	species :: [g] -> Int
 
 orderFitness :: (Gene g) => [g] -> [g]
@@ -18,13 +18,9 @@ orderFitness = reverse . sortBy (\a b -> compare (fitness a) (fitness b))
 
 compete :: (Gene g) => [g] -> IO [g]
 compete pool = do
-	let s = species pool
-	variants <- (mapM (mapM mutate) . map (replicate s)) pool
-	let pool' = (map head . map orderFitness) variants
-	return pool'
+	variants <- (mapM (mapM mutate) . map (replicate (species pool))) pool
+	return $ (map (head . orderFitness)) variants
 
 evolve :: (Gene g) => Int -> [g] -> IO [g]
 evolve 0 pool = return pool
-evolve n pool = do
-	pool' <- compete pool
-	evolve (n - 1) pool'
+evolve n pool = compete pool >>= evolve (n - 1)
