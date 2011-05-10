@@ -19,41 +19,29 @@ randomChar = do
 randomGene :: IO String
 randomGene = replicateM (length target) randomChar
 
-rate :: Float
-rate = 1.0 --always mutate
-
-factor :: Int
-factor = 8
+numSpecies :: Int
+numSpecies = 8
 
 instance Gene String where
 	fitness gene = (sum $ zipWith (\t g -> if t == g then 1 else 0) target gene) / (fromIntegral (length target))
-
-	mutability _ = rate
-
-	advantage _ = factor
 
 	mutate gene = do
 		index <- randomRIO (0, length target - 1)
 		ch <- randomChar
 		let gene' = (take index gene) ++ [ch] ++ (drop (index + 1) gene)
-
 		return gene'
+
+	species pool = numSpecies
 
 main :: IO ()
 main = do
-	let generations = 10 ^ 3
-	let poolSize = 512
-	pool <- replicateM poolSize randomGene
+	let generations = 10000 -- 10 ^ 4
+	pool <- replicateM numSpecies randomGene
 
 	putStrLn $ "Target: " ++ target
-	putStrLn $ "Mutation rate: " ++ show rate
-	putStrLn $ "Advantage: " ++ show factor
-	putStrLn $ "Pool size: " ++ show poolSize
+	putStrLn $ "Pool size: " ++ show numSpecies
 	putStrLn $ "Running " ++ show generations ++ " generations..."
 
 	pool' <- evolve generations pool
 
 	putStrLn $ "Current pool:\n" ++ unlines pool'
-
-	let best = head $ orderFitness pool'
-	putStrLn $ "Best candidate: " ++ best
