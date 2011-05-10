@@ -1,6 +1,6 @@
 module Genetics where
 
-import Data.List (sortBy)
+import Data.List (maximumBy)
 import Random (randomRIO)
 
 class Gene g where
@@ -13,8 +13,8 @@ class Gene g where
 	-- How many species will be explored in each round?
 	species :: [g] -> Int
 
-orderFitness :: (Gene g) => [g] -> [g]
-orderFitness = reverse . sortBy (\a b -> compare (fitness a) (fitness b))
+best :: (Gene g) => [g] -> g
+best = maximumBy (\a b -> compare (fitness a) (fitness b))
 
 -- Prevents stack overflow
 mutate' :: (Gene g) => g -> IO g
@@ -29,7 +29,7 @@ compete :: (Gene g) => [g] -> IO [g]
 compete pool = do
 	let islands = map (replicate (species pool)) pool
 	islands' <- drift islands
-	let representatives = map (head . orderFitness) islands'
+	let representatives = map best islands'
 	return representatives
 
 evolve :: (Gene g) => Int -> [g] -> IO [g]
