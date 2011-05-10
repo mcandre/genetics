@@ -34,7 +34,7 @@ instance Gene String where
 
 main :: IO ()
 main = do
-	let generations = 10 ^ 4
+	let generations = 10 ^ 3
 	pool <- replicateM numSpecies randomGene
 
 	putStrLn $ "Target: " ++ target
@@ -43,4 +43,4 @@ main = do
 
 	pool' <- evolve generations pool
 
-	putStrLn $ "Current pool:\n" ++ unlines pool'
+	putStrLn $ "Current pool:\n" ++ unlines (orderFitness pool')

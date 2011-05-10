@@ -4,12 +4,15 @@ EXAMPLE
 
 	$ make
 	$ ./helloga
-	...
-	hellowobld
-	helloworyd
-	helloporld
-	hellyworld
-	helloworrd
-	hellowofld
-	hellpworld
-	Best candidate: helloworld
+	Target: helloworld
+	Pool size: 8
+	Running 1000 generations...
+	Current pool:
+	hellmworld
+	melxoworld
+	telloworly
+	hehlowjrld
+	hellowkbld
+	hellrwoylp
+	hemlowsyld
+	hhllowbrlt
