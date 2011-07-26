@@ -3,15 +3,17 @@
 {-# LANGUAGE TypeSynonymInstances #-}
 
 import Genetics
+import Data.Random
+import Data.Random.Source.DevRandom
+import Data.Random.Extras
 import Control.Monad (replicateM)
-import Random (randomRIO)
 import Char (ord, chr)
 
 target :: String
 target = "helloworld"
 
 randomChar :: IO Char
-randomChar = pick ['a'..'z']
+randomChar = runRVar (choice ['a'..'z']) DevRandom
 
 randomGene :: IO String
 randomGene = replicateM (length target) randomChar
@@ -23,7 +25,7 @@ instance Gene String where
 	fitness gene = (sum $ zipWith (\t g -> if t == g then 1 else 0) target gene) / (fromIntegral (length target))
 
 	mutate gene = do
-		index <- randomRIO (0, length target - 1)
+		index <- runRVar (choice [0 .. length target - 1]) DevRandom
 		ch <- randomChar
 		return $ (take index gene) ++ [ch] ++ (drop (index + 1) gene)
 

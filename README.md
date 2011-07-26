@@ -1,7 +1,12 @@
 genetics - A Genetic Algorithm library in Haskell
 
+REQUIREMENTS
+
+ - random-extras
+
 EXAMPLE
 
+	$ cabal install random-extras
 	$ make
 	$ ./helloga
 	Target: helloworld

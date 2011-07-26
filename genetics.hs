@@ -1,10 +1,6 @@
-module Genetics where
+module Genetics (Gene, fitness, mutate, species, evolve) where
 
 import Data.List (maximumBy)
-import Random (randomRIO)
-
-pick :: [a] -> IO a
-pick xs = randomRIO (0, length xs - 1) >>= return . (xs !!)
 
 class Gene g where
 	-- How ideal is the gene from 0.0 to 1.0?
