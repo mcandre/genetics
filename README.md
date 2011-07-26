@@ -6,13 +6,13 @@ EXAMPLE
 	$ ./helloga
 	Target: helloworld
 	Pool size: 8
-	Running 1000 generations...
+	Running 10000 generations...
 	Current pool:
-	hellmworld
-	melxoworld
-	telloworly
-	hehlowjrld
-	hellowkbld
-	hellrwoylp
-	hemlowsyld
-	hhllowbrlt
+	helloworld
+	helloworld
+	helloworld
+	helloworld
+	helloworld
+	helloworld
+	helloworld
+	helloworld

@@ -10,9 +10,6 @@ import Char (ord, chr)
 target :: String
 target = "helloworld"
 
-pick :: [a] -> IO a
-pick xs = (randomRIO (0, length xs - 1)) >>= (return . (xs !!))
-
 randomChar :: IO Char
 randomChar = pick ['a'..'z']
 
