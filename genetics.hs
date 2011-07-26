@@ -20,7 +20,11 @@ best = maximumBy (\a b -> compare (fitness a) (fitness b))
 mutate' :: (Gene g) => g -> IO g
 mutate' gene = do
 	gene' <- mutate gene
-	gene' `seq` return gene'
+
+	-- Don't mutate a perfect gene
+	if fitness gene == 1.0
+		then return gene
+		else gene' `seq` return gene'
 
 drift :: (Gene g) => [[g]] -> IO [[g]]
 drift = mapM (mapM mutate')
