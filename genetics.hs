@@ -15,26 +15,25 @@ class Gene g where
 best :: (Gene g) => [g] -> g
 best = maximumBy (\a b -> compare (fitness a) (fitness b))
 
--- Prevents stack overflow
-mutate' :: (Gene g) => g -> IO g
-mutate' gene = do
-	gene' <- mutate gene
-
-	-- Don't mutate a perfect gene
-	if fitness gene == 1.0
-		then return gene
-		else gene' `seq` return gene'
-
 drift :: (Gene g) => [[g]] -> IO [[g]]
 drift = mapM (mapM mutate')
+	where
+		-- Prevents stack overflow
+		mutate' :: (Gene g) => g -> IO g
+		mutate' gene
+			-- Don't mutate a perfect gene
+			| fitness gene == 1.0 = return gene
+			| otherwise = do
+				gene' <- mutate gene
+				gene' `seq` return gene'
 
 compete :: (Gene g) => [g] -> IO [g]
 compete pool = do
-	let islands = map (replicate (species pool)) pool
-	islands' <- drift islands
-	let representatives = map best islands'
-	return representatives
+	islands <- drift (map (replicate (species pool)) pool)
+	islands `seq` return $ map best islands
 
 evolve :: (Gene g) => Int -> [g] -> IO [g]
 evolve 0 pool = return pool
-evolve n pool = compete pool >>= evolve (n - 1)
+evolve n pool = do
+	pool' <- compete pool
+	pool' `seq` evolve (n - 1) pool'

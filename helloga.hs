@@ -18,9 +18,6 @@ randomChar = runRVar (choice ['a'..'z']) DevRandom
 randomGene :: IO String
 randomGene = replicateM (length target) randomChar
 
-numSpecies :: Int
-numSpecies = 8
-
 instance Gene String where
 	fitness gene = (sum $ zipWith (\t g -> if t == g then 1 else 0) target gene) / (fromIntegral (length target))
 
@@ -29,15 +26,15 @@ instance Gene String where
 		ch <- randomChar
 		return $ (take index gene) ++ [ch] ++ (drop (index + 1) gene)
 
-	species _ = numSpecies
+	species _ = 8
 
 main :: IO ()
 main = do
 	let generations = 10 ^ 4
-	pool <- replicateM numSpecies randomGene
+	pool <- replicateM (species [""]) randomGene
 
 	putStrLn $ "Target: " ++ target
-	putStrLn $ "Pool size: " ++ show numSpecies
+	putStrLn $ "Pool size: " ++ show (species [""])
 	putStrLn $ "Running " ++ show generations ++ " generations..."
 
 	pool' <- evolve generations pool
