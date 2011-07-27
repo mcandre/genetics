@@ -31,6 +31,7 @@ instance Gene String where
 main :: IO ()
 main = do
 	let generations = 10 ^ 4
+
 	pool <- replicateM (species [""]) randomGene
 
 	putStrLn $ "Target: " ++ target

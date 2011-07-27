@@ -23,17 +23,11 @@ drift = mapM (mapM mutate')
 		mutate' gene
 			-- Don't mutate a perfect gene
 			| fitness gene == 1.0 = return gene
-			| otherwise = do
-				gene' <- mutate gene
-				gene' `seq` return gene'
+			| otherwise = mutate gene
 
 compete :: (Gene g) => [g] -> IO [g]
-compete pool = do
-	islands <- drift (map (replicate (species pool)) pool)
-	islands `seq` return $ map best islands
+compete pool = drift (map (replicate (species pool)) pool) >>= return . map best
 
 evolve :: (Gene g) => Int -> [g] -> IO [g]
 evolve 0 pool = return pool
-evolve n pool = do
-	pool' <- compete pool
-	pool' `seq` evolve (n - 1) pool'
+evolve n pool = compete pool >>= evolve (n - 1)
