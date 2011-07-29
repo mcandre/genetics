@@ -1,21 +1,25 @@
-EXECUTABLE=helloga
+all: hellogenetics.hs genetics.hs
+	ghc --make -O2 -fforce-recomp hellogenetics.hs -package haskell98 -package random-extras -package random-fu
 
-all: helloga.hs genetics.hs
-	ghc --make -O2 -fforce-recomp helloga.hs -package random-extras
-
-profile: helloga.hs genetics.hs clean
-	ghc --make -O2 -fforce-recomp -prof -auto-all -caf-all -rtsopts helloga.hs -package random-extras
-	time ./helloga time ./helloga +RTS -p -hc
-	hp2ps -e8in -c helloga.hp
-	ps2pdf helloga.ps helloga.pdf
-	open helloga.pdf
+profile: hellogenetics.hs genetics.hs clean
+	ghc --make -O2 -fforce-recomp -prof -auto-all -caf-all -rtsopts helloga.hs -package haskell98 -package random-extras -package random-fu
+	time ./hellogenetics time ./hellogenetics +RTS -p -hc
+	hp2ps -e8in -c hellogenetics.hp
+	ps2pdf hellogenetics.ps hellogenetics.pdf
+	open hellogenetics.pdf
 
 clean:
-	-rm helloga.pdf
-	-rm helloga.ps
-	-rm helloga.aux
-	-rm helloga.hp
-	-rm helloga.prof
-	-rm $(EXECUTABLE)
+	-rm hellogenetics.pdf
+	-rm hellogenetics.ps
+	-rm hellogenetics.aux
+	-rm hellogenetics.hp
+	-rm hellogenetics.prof
+	-rm hellogenetics
 	-rm *.o
 	-rm *.hi
+
+install: hellogenetics.hs genetics.hs
+	cabal install --prefix=$$HOME --user
+
+uninstall:
+	-rm $$HOME/bin/hellogenetics

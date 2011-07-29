@@ -1,13 +1,13 @@
-Name:			genetics
-Version:		0.0.1
-Description:	A Genetic Algorithm library
-License:		FreeBSD
-License-file:	LICENSE
-Author:			Andrew Pennebaker
-Maintainer:		andrew.pennebaker@gmail.com
-Build-Type:		Simple
-Cabal-Version:	>=1.2
+Name:           genetics
+Version:        0.0.1
+Description:    A Genetic Algorithm library
+License:        BSD3
+License-file:   LICENSE
+Author:         Andrew Pennebaker
+Maintainer:     andrew.pennebaker@gmail.com
+Build-Type:     Simple
+Cabal-Version:  >=1.2
 
-Executable genetics
-	Main-is:		helloga.hs
-	Build-Depends:	random-extras >= 0.18.1, base >= 4.3.1.0
+Executable hellogenetics
+    Main-is:        hellogenetics.hs
+    Build-Depends:  base >= 4.3.1.0, haskell98 >= 1.1.0.1, random-extras >= 0.18.1, random-fu >= 0.1.4
