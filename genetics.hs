@@ -1,6 +1,7 @@
 module Genetics (Gene, fitness, mutate, species, evolve) where
 
 import Data.List (maximumBy)
+import Data.Ord (comparing)
 
 class Gene g where
 	-- How ideal is the gene from 0.0 to 1.0?
@@ -13,7 +14,7 @@ class Gene g where
 	species :: [g] -> Int
 
 best :: (Gene g) => [g] -> g
-best = maximumBy (\a b -> compare (fitness a) (fitness b))
+best = maximumBy (comparing fitness)
 
 drift :: (Gene g) => [[g]] -> IO [[g]]
 drift = mapM (mapM mutate')

@@ -7,7 +7,7 @@ import Data.Random
 import Data.Random.Source.DevRandom
 import Data.Random.Extras
 import Control.Monad (replicateM)
-import Char (ord, chr)
+import Data.Char (ord, chr)
 
 target :: String
 target = "helloworld"
@@ -24,7 +24,7 @@ instance Gene String where
 	mutate gene = do
 		index <- runRVar (choice [0 .. length target - 1]) DevRandom
 		ch <- randomChar
-		return $ (take index gene) ++ [ch] ++ (drop (index + 1) gene)
+		return $ take index gene ++ [ch] ++ drop (index + 1) gene
 
 	species _ = 8
 
