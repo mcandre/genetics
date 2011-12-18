@@ -1,8 +1,8 @@
 all: hellogenetics.hs genetics.hs
-	ghc --make -O2 -fforce-recomp hellogenetics.hs -package haskell98 -package random-extras -package random-fu
+	ghc --make -O2 -fforce-recomp -optl"-Wl,-no_compact_unwind" hellogenetics.hs -package base -package random-extras -package random-fu
 
 profile: hellogenetics.hs genetics.hs clean
-	ghc --make -O2 -fforce-recomp -prof -auto-all -caf-all -rtsopts helloga.hs -package haskell98 -package random-extras -package random-fu
+	ghc --make -O2 -fforce-recomp -prof -auto-all -caf-all -rtsopts hellogenetics.hs -package base -package random-extras -package random-fu
 	time ./hellogenetics time ./hellogenetics +RTS -p -hc
 	hp2ps -e8in -c hellogenetics.hp
 	ps2pdf hellogenetics.ps hellogenetics.pdf

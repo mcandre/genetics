@@ -30,5 +30,4 @@ compete :: (Gene g) => [g] -> IO [g]
 compete pool = drift (map (replicate (species pool)) pool) >>= return . map best
 
 evolve :: (Gene g) => Int -> [g] -> IO [g]
-evolve 0 pool = return pool
-evolve n pool = compete pool >>= evolve (n - 1)
+evolve n pool = last $ take n $ iterate (>>= compete) (return pool)
