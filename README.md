@@ -1,12 +1,12 @@
-genetics - A Genetic Algorithm library in Haskell
+# genetics - A Genetic Algorithm library in Haskell
 
-REQUIREMENTS
+## REQUIREMENTS
 
  - base
  - random-extras
  - random-fu
 
-EXAMPLE
+## EXAMPLE
 
     $ cabal update
 	$ cabal install random-extras random-fu
