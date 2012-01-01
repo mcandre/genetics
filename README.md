@@ -3,13 +3,12 @@
 ## REQUIREMENTS
 
  - base
- - random-extras
  - random-fu
 
 ## EXAMPLE
 
     $ cabal update
-	$ cabal install random-extras random-fu
+	$ cabal install random-fu
 	$ make install
 	$ hellogenetics
 	Target: helloworld
