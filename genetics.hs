@@ -3,6 +3,9 @@ module Genetics (Gene, fitness, mutate, species, evolve) where
 import Data.List (maximumBy)
 import Data.Ord (comparing)
 
+import Control.Parallel.Strategies
+import Control.Parallel
+
 class Gene g where
 	-- How ideal is the gene from 0.0 to 1.0?
 	fitness :: g -> Float
@@ -27,7 +30,7 @@ drift = mapM (mapM mutate')
 			| otherwise = mutate gene
 
 compete :: (Gene g) => [g] -> IO [g]
-compete pool = drift (map (replicate (species pool)) pool) >>= return . map best
+compete pool = drift ((parMap rseq) (replicate (species pool)) pool) >>= return . (parMap rseq) best
 
 evolve :: (Gene g) => Int -> [g] -> IO [g]
 evolve n pool = last $ take n $ iterate (>>= compete) (return pool)

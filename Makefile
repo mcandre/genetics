@@ -1,9 +1,9 @@
 all: hellogenetics.hs genetics.hs
-	ghc --make -O2 -fforce-recomp -optl"-Wl,-no_compact_unwind" hellogenetics.hs -package base -package random-fu
+	ghc --make -O2 -fforce-recomp -optl"-Wl,-no_compact_unwind" -threaded -rtsopts hellogenetics.hs -package base -package random-fu
 
 profile: hellogenetics.hs genetics.hs clean
-	ghc --make -O2 -fforce-recomp -prof -auto-all -caf-all -rtsopts hellogenetics.hs -package base -package random-fu
-	time ./hellogenetics time ./hellogenetics +RTS -p -hc
+	ghc --make -O2 -fforce-recomp -prof -auto-all -caf-all -threaded -rtsopts hellogenetics.hs -package base -package random-fu
+	time ./hellogenetics time ./hellogenetics +RTS -N1 -p -hc # Only -N1 is supported with profiling
 	hp2ps -e8in -c hellogenetics.hp
 	ps2pdf hellogenetics.ps hellogenetics.pdf
 	open hellogenetics.pdf
