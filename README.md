@@ -7,7 +7,7 @@
 
 ## EXAMPLE
 
-    $ cabal update
+	$ cabal update
 	$ cabal install random-fu
 	$ make install
 	$ hellogenetics

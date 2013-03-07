@@ -19,25 +19,25 @@ randomGene :: IO String
 randomGene = replicateM (length target) randomChar
 
 instance Gene String where
-	fitness gene = (sum $ zipWith (\t g -> if t == g then 1 else 0) target gene) / (fromIntegral (length target))
+  fitness gene = (sum $ zipWith (\t g -> if t == g then 1 else 0) target gene) / (fromIntegral (length target))
 
-	mutate gene = do
-		index <- runRVar (randomElement [0 .. length target - 1]) DevRandom
-		ch <- randomChar
-		return $ take index gene ++ [ch] ++ drop (index + 1) gene
+  mutate gene = do
+    index <- runRVar (randomElement [0 .. length target - 1]) DevRandom
+    ch <- randomChar
+    return $ take index gene ++ [ch] ++ drop (index + 1) gene
 
-	species _ = 8
+  species _ = 8
 
 main :: IO ()
 main = do
-	let generations = 10 ^ 4
+  let generations = 10 ^ 4
 
-	pool <- replicateM (species [""]) randomGene
+  pool <- replicateM (species [""]) randomGene
 
-	putStrLn $ "Target: " ++ target
-	putStrLn $ "Pool size: " ++ show (species [""])
-	putStrLn $ "Running " ++ show generations ++ " generations..."
+  putStrLn $ "Target: " ++ target
+  putStrLn $ "Pool size: " ++ show (species [""])
+  putStrLn $ "Running " ++ show generations ++ " generations..."
 
-	pool' <- evolve generations pool
+  pool' <- evolve generations pool
 
-	putStrLn $ "Current pool:\n" ++ unlines pool'
+  putStrLn $ "Current pool:\n" ++ unlines pool'
