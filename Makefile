@@ -1,19 +1,27 @@
-all: hellogenetics.hs genetics.hs
-	ghc --make -O2 -fforce-recomp -optl"-Wl,-no_compact_unwind" -threaded -rtsopts hellogenetics.hs -package base -package random-fu
+all: test
+
+test: hellogenetics
+	./hellogenetics
+
+COMPILE=ghc --make -O2 -threaded -rtsopts hellogenetics.hs -package base -package random-fu -package monad-par
+
+hellogenetics: hellogenetics.hs genetics.hs
+	$(COMPILE) -optl"-Wl,-no_compact_unwind"
 
 profile: hellogenetics.hs genetics.hs clean
-	ghc --make -O2 -fforce-recomp -prof -auto-all -caf-all -threaded -rtsopts hellogenetics.hs -package base -package random-fu
-	time ./hellogenetics time ./hellogenetics +RTS -N1 -p -hc # Only -N1 is supported with profiling
+	$(COMPILE) -prof -auto-all -caf-all
+	time ./hellogenetics time ./hellogenetics +RTS -N1 -p -hc
 	hp2ps -c hellogenetics.hp
 	ps2pdf hellogenetics.ps hellogenetics.pdf
 	open hellogenetics.pdf
 
 clean:
-	-rm hellogenetics.pdf
-	-rm hellogenetics.ps
-	-rm hellogenetics.aux
-	-rm hellogenetics.hp
-	-rm hellogenetics.prof
+	-rm *.pdf
+	-rm *.ps
+	-rm *.aux
+	-rm *.hp
+	-rm *.prof
+	-rm *.exe
 	-rm hellogenetics
 	-rm *.o
 	-rm *.hi
