@@ -9,7 +9,7 @@
 
     $ cabal update
     $ cabal install random-fu
-    $ make test
+    $ make
     ./hellogenetics
     helloworld
 
