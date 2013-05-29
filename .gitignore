@@ -8,5 +8,7 @@ hellogenetics
 *.ps
 *.hp
 dist/
+*-profile
 .hpc/
 *.tix
+*-coverage
