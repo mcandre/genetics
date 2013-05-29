@@ -16,16 +16,18 @@ hellogenetics-coverage: $(SOURCES)
 test: hellogenetics
 	./hellogenetics +RTS -N
 
-time: hellogenetics-profile
+hellogenetics-profile.hp: cleanprofile hellogenetics-profile
 	time ./hellogenetics-profile +RTS -N1 -p -hc
 
-profile: cleanprofile time
+profile: hellogenetics-profile.hp
 	hp2ps -c hellogenetics-profile.hp
 	ps2pdf hellogenetics-profile.ps hellogenetics-profile.pdf
 	open hellogenetics-profile.pdf
 
-coverage: hellogenetics-coverage
-	./hellogenetics-coverage +RTS -N
+hellogenetics-coverage.tix: hellogenetics-coverage
+	time ./hellogenetics-coverage +RTS -N
+
+coverage: hellogenetics-coverage.tix
 	hpc report hellogenetics-coverage
 
 cleanprofile:
