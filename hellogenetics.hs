@@ -15,7 +15,7 @@ target :: String
 target = "Hello World!"
 
 generations :: Int
-generations = 2 ^ 14
+generations = 2 ^ 16
 
 indexSpace :: [Int]
 indexSpace = [0 .. length target - 1]

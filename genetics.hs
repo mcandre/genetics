@@ -33,7 +33,7 @@ drift = mapM (mapM mutate')
 
 compete :: (Gene g) => [g] -> IO [g]
 compete pool
-  | fitness (best pool) /= 1.0 = drift ((parMap rseq) (replicate (species pool)) pool) >>= return . (parMap rseq) best
+  | any ((/= 1.0) . fitness) pool = drift ((parMap rseq) (replicate (species pool)) pool) >>= return . (parMap rseq) best
   | otherwise = return pool
 
 evolve :: (Gene g) => Int -> [g] -> IO [g]
