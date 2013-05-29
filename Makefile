@@ -19,7 +19,7 @@ test: hellogenetics
 time: hellogenetics-profile
 	time ./hellogenetics-profile +RTS -N1 -p -hc
 
-profile: clean time
+profile: cleanprofile time
 	hp2ps -c hellogenetics-profile.hp
 	ps2pdf hellogenetics-profile.ps hellogenetics-profile.pdf
 	open hellogenetics-profile.pdf
@@ -28,17 +28,19 @@ coverage: hellogenetics-coverage
 	./hellogenetics-coverage +RTS -N
 	hpc report hellogenetics-coverage
 
-clean:
-	-rm -rf .hpc
-	-rm *.tix
+cleanprofile:
 	-rm *.hp
 	-rm *.prof
 	-rm *.pdf
 	-rm *.ps
 	-rm *.aux
+	-rm *-profile
+
+clean: cleanprofile
+	-rm -rf .hpc
+	-rm *.tix
 	-rm *.exe
 	-rm hellogenetics
-	-rm *-profile
 	-rm *-coverage
 	-rm *.o
 	-rm *.hi
