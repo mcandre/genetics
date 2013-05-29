@@ -14,3 +14,5 @@
     helloworld
 
 To perform profiling, run `make profile`.
+
+To perform coverage, run `make coverage`.
