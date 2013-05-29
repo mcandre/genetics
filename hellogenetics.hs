@@ -9,8 +9,6 @@ import Data.Random.Source.DevRandom
 import Data.Random.List (randomElement)
 import Control.Monad (replicateM)
 import Data.Char (ord, chr)
-import Data.List (sortBy)
-import Data.Ord (comparing)
 
 target :: String
 target = "helloworld"
@@ -36,4 +34,4 @@ main = do
   let generations = 10 ^ 4
   pool <- replicateM (species [""]) randomGene
   pool' <- evolve generations pool
-  putStrLn $ last $ sortBy (comparing fitness) pool'
+  putStrLn $ best pool'

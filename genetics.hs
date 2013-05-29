@@ -1,10 +1,9 @@
-module Genetics (Gene, fitness, mutate, species, evolve) where
+module Genetics (Gene, fitness, mutate, species, evolve, best) where
+
+import Control.Parallel.Strategies (parMap, rseq)
 
 import Data.List (maximumBy)
 import Data.Ord (comparing)
-
-import Control.Parallel.Strategies
-import Control.Parallel
 
 class Gene g where
   -- How ideal is the gene from 0.0 to 1.0?
