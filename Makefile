@@ -25,7 +25,7 @@ profile: clean time
 	open hellogenetics-profile.pdf
 
 coverage: hellogenetics-coverage
-	./hellogenetics-coverage
+	./hellogenetics-coverage +RTS -N
 	hpc report hellogenetics-coverage
 
 clean:
@@ -38,8 +38,8 @@ clean:
 	-rm *.aux
 	-rm *.exe
 	-rm hellogenetics
-	-rm hellogenetics-profile
-	-rm hellogenetics-coverage
+	-rm *-profile
+	-rm *-coverage
 	-rm *.o
 	-rm *.hi
 
