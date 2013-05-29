@@ -10,8 +10,8 @@
     $ cabal update
     $ cabal install random-fu
     $ make
-    ./hellogenetics
-    helloworld
+    ./hellogenetics +RTS -N
+    Hello World!
 
 To perform profiling, run `make profile`.
 
