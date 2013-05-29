@@ -4,7 +4,7 @@ all: hellogenetics.hs genetics.hs
 profile: hellogenetics.hs genetics.hs clean
 	ghc --make -O2 -fforce-recomp -prof -auto-all -caf-all -threaded -rtsopts hellogenetics.hs -package base -package random-fu
 	time ./hellogenetics time ./hellogenetics +RTS -N1 -p -hc # Only -N1 is supported with profiling
-	hp2ps -e8in -c hellogenetics.hp
+	hp2ps -c hellogenetics.hp
 	ps2pdf hellogenetics.ps hellogenetics.pdf
 	open hellogenetics.pdf
 

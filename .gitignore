@@ -1,0 +1,10 @@
+hellogenetics
+*.exe
+*.o
+*.hi
+*.aux
+*.prof
+*.pdf
+*.ps
+*.hp
+dist

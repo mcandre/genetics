@@ -1,6 +1,7 @@
 #!/usr/bin/env runhaskell
 
 {-# LANGUAGE TypeSynonymInstances #-}
+{-# LANGUAGE FlexibleInstances #-}
 
 import Genetics
 import Data.Random
