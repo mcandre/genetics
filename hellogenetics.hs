@@ -9,12 +9,14 @@ import Data.Random.Source.DevRandom
 import Data.Random.List (randomElement)
 import Control.Monad (replicateM)
 import Data.Char (ord, chr)
+import Data.List (sortBy)
+import Data.Ord (comparing)
 
 target :: String
 target = "helloworld"
 
 randomChar :: IO Char
-randomChar = runRVar (randomElement ['a'..'z']) DevRandom
+randomChar = runRVar (randomElement ['a' .. 'z']) DevRandom
 
 randomGene :: IO String
 randomGene = replicateM (length target) randomChar
@@ -32,13 +34,6 @@ instance Gene String where
 main :: IO ()
 main = do
   let generations = 10 ^ 4
-
   pool <- replicateM (species [""]) randomGene
-
-  putStrLn $ "Target: " ++ target
-  putStrLn $ "Pool size: " ++ show (species [""])
-  putStrLn $ "Running " ++ show generations ++ " generations..."
-
   pool' <- evolve generations pool
-
-  putStrLn $ "Current pool:\n" ++ unlines pool'
+  putStrLn $ last $ sortBy (comparing fitness) pool'
