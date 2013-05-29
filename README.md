@@ -2,24 +2,15 @@
 
 ## REQUIREMENTS
 
- - base
- - random-fu
+ - [Haskell](http://www.haskell.org/)
+ - [random-fu](http://hackage.haskell.org/package/random-fu)
 
 ## EXAMPLE
 
     $ cabal update
     $ cabal install random-fu
-    $ make install
-    $ ./hellogenetics
-    Target: helloworld
-    Pool size: 8
-    Running 10000 generations...
-    Current pool:
+    $ make test
+    ./hellogenetics
     helloworld
-    helloworld
-    helloworld
-    helloworld
-    helloworld
-    helloworld
-    helloworld
-    helloworld
+
+To perform profiling, run `make profile`.
