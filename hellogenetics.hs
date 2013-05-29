@@ -15,22 +15,22 @@ target :: String
 target = "Hello World!"
 
 generations :: Int
-generations = 2 ^ 13
+generations = 2 ^ 14
 
 indexSpace :: [Int]
 indexSpace = [0 .. length target - 1]
 
-randomIndex :: RVar Int
-randomIndex = randomElement indexSpace
+randomIndex :: IO Int
+randomIndex = runRVar (randomElement indexSpace) DevRandom
 
 charSpace :: [Char]
 charSpace = [' ' .. '~']
 
-randomChar :: RVar Char
-randomChar = randomElement charSpace
+randomChar :: IO Char
+randomChar = runRVar (randomElement charSpace) DevRandom
 
 randomGene :: IO String
-randomGene = replicateM (length target) (runRVar randomChar DevRandom)
+randomGene = replicateM (length target) randomChar
 
 instance Gene String where
   fitness gene = (sum $ zipWith (\t g -> if t == g then 1 else 0) target gene) / (fromIntegral (length target))

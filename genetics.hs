@@ -13,7 +13,7 @@ class Gene g where
   fitness :: g -> Float
 
   -- How does a gene mutate?
-  mutate :: g -> RVar g
+  mutate :: g -> IO g
 
   -- How many species will be explored in each round?
   species :: [g] -> Int
@@ -25,7 +25,7 @@ best = maximumBy (comparing fitness)
 mutate' :: (Gene g) => g -> IO g
 mutate' gene
 -- Don't mutate a perfect gene
-  | fitness gene /= 1.0 = runRVar (mutate gene) DevRandom
+  | fitness gene /= 1.0 = mutate gene
   | otherwise = return gene
 
 drift :: (Gene g) => [[g]] -> IO [[g]]
@@ -37,4 +37,5 @@ compete pool
   | otherwise = return pool
 
 evolve :: (Gene g) => Int -> [g] -> IO [g]
-evolve n pool = last $ take n $ iterate (>>= compete) (return pool)
+evolve 0 pool = return pool
+evolve n pool = compete pool >>= evolve (n-1)
