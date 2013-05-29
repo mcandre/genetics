@@ -7,4 +7,6 @@ hellogenetics
 *.pdf
 *.ps
 *.hp
-dist
+dist/
+.hpc/
+*.tix

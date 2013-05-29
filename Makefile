@@ -1,21 +1,22 @@
-all: test
-
-test: hellogenetics
-	./hellogenetics
-
-COMPILE=ghc --make -O2 -threaded -rtsopts hellogenetics.hs -package base -package random-fu -package monad-par
+all: time
 
 hellogenetics: hellogenetics.hs genetics.hs
-	$(COMPILE) -optl"-Wl,-no_compact_unwind"
+	ghc --make -O2 -threaded -rtsopts hellogenetics.hs -package base -package random-fu -package monad-par -optl"-Wl,-no_compact_unwind" -prof -auto-all -caf-all -fhpc
 
-profile: hellogenetics.hs genetics.hs clean
-	$(COMPILE) -prof -auto-all -caf-all
-	time ./hellogenetics time ./hellogenetics +RTS -N1 -p -hc
+time: hellogenetics
+	time ./hellogenetics +RTS -N1 -p -hc
+
+profile: clean time
 	hp2ps -c hellogenetics.hp
 	ps2pdf hellogenetics.ps hellogenetics.pdf
 	open hellogenetics.pdf
 
+coverage: time
+	hpc report hellogenetics
+
 clean:
+	-rm -rf .hpc
+	-rm *.tix
 	-rm *.pdf
 	-rm *.ps
 	-rm *.aux
