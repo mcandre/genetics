@@ -23,7 +23,7 @@ indexSpace = [0 .. length target - 1]
 randomIndex :: IO Int
 randomIndex = runRVar (randomElement indexSpace) DevRandom
 
-charSpace :: [Char]
+charSpace :: String
 charSpace = [' ' .. '~']
 
 randomChar :: IO Char
@@ -33,7 +33,7 @@ randomGene :: IO String
 randomGene = replicateM (length target) randomChar
 
 instance Gene String where
-  fitness gene = (sum $ zipWith (\t g -> if t == g then 1 else 0) target gene) / (fromIntegral (length target))
+  fitness gene = sum (zipWith (\t g -> if t == g then 1 else 0) target gene) / fromIntegral (length target)
 
   mutate gene = do
     i <- randomIndex

@@ -5,6 +5,8 @@ import Data.Random.Source.DevRandom
 
 import Control.Parallel.Strategies (parMap, rseq)
 
+import Control.Monad (liftM)
+
 import Data.List (maximumBy)
 import Data.Ord (comparing)
 
@@ -33,7 +35,7 @@ drift = mapM (mapM mutate')
 
 compete :: (Gene g) => [g] -> IO [g]
 compete pool
-  | any ((/= 1.0) . fitness) pool = drift ((parMap rseq) (replicate (species pool)) pool) >>= return . (parMap rseq) best
+  | any ((/= 1.0) . fitness) pool = liftM (parMap rseq best) (drift (parMap rseq (replicate (species pool)) pool))
   | otherwise = return pool
 
 evolve :: (Gene g) => Int -> [g] -> IO [g]
