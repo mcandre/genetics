@@ -30,6 +30,9 @@ hellogenetics-coverage.tix: hellogenetics-coverage
 coverage: hellogenetics-coverage.tix
 	hpc report hellogenetics-coverage
 
+lint:
+	hlint .
+
 cleanprofile:
 	-rm *.hp
 	-rm *.prof

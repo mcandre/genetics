@@ -1,11 +1,20 @@
 # genetics - A Genetic Algorithm library in Haskell
 
-## REQUIREMENTS
+# REQUIREMENTS
 
  - [Haskell](http://www.haskell.org/)
  - [random-fu](http://hackage.haskell.org/package/random-fu)
 
-## EXAMPLE
+# DEVELOPMENT
+
+# Linting
+
+Keep the code tidy with HLint:
+
+    $ cabal install hlint
+    $ make lint
+
+# EXAMPLE
 
     $ cabal update
     $ cabal install random-fu
