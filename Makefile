@@ -37,6 +37,9 @@ package:
 	cabal configure
 	cabal sdist
 
+publish: package
+	cabal upload dist/genetics-*.tar.gz
+
 cleanprofile:
 	-rm *.hp
 	-rm *.prof
