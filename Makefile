@@ -33,6 +33,10 @@ coverage: hellogenetics-coverage.tix
 lint:
 	hlint .
 
+package:
+	cabal configure
+	cabal sdist
+
 cleanprofile:
 	-rm *.hp
 	-rm *.prof
@@ -49,6 +53,7 @@ clean: cleanprofile
 	-rm *-coverage
 	-rm *.o
 	-rm *.hi
+	-rm -rf dist/*
 
 install: hellogenetics.hs genetics.hs
 	cabal install --prefix=$$HOME --user
