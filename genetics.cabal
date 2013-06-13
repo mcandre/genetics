@@ -1,12 +1,18 @@
 Name:           genetics
 Version:        0.0.2
-Description:    A Genetic Algorithm library
+Category:       Machine Learning
+Synopsis:       A Genetic Algorithm library
+Description:    A Gene typeclass for genetic algorithms
 License:        BSD3
 License-file:   LICENSE
 Author:         Andrew Pennebaker
 Maintainer:     andrew.pennebaker@gmail.com
 Build-Type:     Simple
-Cabal-Version:  >=1.2
+Cabal-Version:  >=1.6
+
+source-repository head
+  type:     git
+  location: https://github.com/mcandre/genetics
 
 Executable hellogenetics
     Main-is:        hellogenetics.hs
