@@ -5,6 +5,12 @@
  - [Haskell](http://www.haskell.org/)
  - [random-fu](http://hackage.haskell.org/package/random-fu)
 
+Install random-fu with `cabal install -p random-fu`.
+
+Recommend configuring cabal to default to profiled libraries:
+
+https://github.com/mcandre/dotfiles/blob/master/.cabal/config#L24
+
 ## OPTIONAL
 
 * [Ruby](https://www.ruby-lang.org/) 1.9+
@@ -31,11 +37,17 @@ Keep the code tidy with HLint:
 # EXAMPLE
 
     $ cabal update
-    $ cabal install random-fu
+    $ cabal install -p random-fu
     $ make
     ./hellogenetics +RTS -N
     Hello World!
 
-To perform profiling, run `make profile`.
+# Profiling
 
-To perform coverage, run `make coverage`.
+    $ make profile
+
+If profiling shows an error message, resolve by reinstalling the dependency libraries with `cabal install -p <library>`, as [lambdor](http://lambdor.net/?p=258) recommends.
+
+# Coverage
+
+    $ make coverage
