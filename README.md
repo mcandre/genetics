@@ -1,5 +1,9 @@
 # genetics - A Genetic Algorithm library in Haskell
 
+# Hackage
+
+http://hackage.haskell.org/package/genetics
+
 # REQUIREMENTS
 
  - [Haskell](http://www.haskell.org/)
