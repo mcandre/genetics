@@ -9,13 +9,13 @@ import Data.Random.Source.DevRandom
 
 import Genetics
 import Control.Monad (replicateM)
-import Data.Char (ord, chr)
+-- import Data.Char (ord, chr)
 
 target :: String
 target = "Hello World!"
 
 generations :: Int
-generations = 2 ^ 16
+generations = (2 :: Int) ^ (16 :: Int)
 
 indexSpace :: [Int]
 indexSpace = [0 .. length target - 1]

@@ -1,7 +1,7 @@
 module Genetics (Gene, fitness, mutate, species, evolve, best) where
 
-import Data.Random (RVar, runRVar)
-import Data.Random.Source.DevRandom
+-- import Data.Random (RVar, runRVar)
+-- import Data.Random.Source.DevRandom
 
 import Control.Parallel.Strategies (parMap, rseq)
 
