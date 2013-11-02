@@ -3,7 +3,7 @@
 {-# LANGUAGE TypeSynonymInstances #-}
 {-# LANGUAGE FlexibleInstances #-}
 
-import Data.Random (RVar, runRVar)
+import Data.Random (runRVar)
 import Data.Random.List (randomElement)
 import Data.Random.Source.DevRandom
 
