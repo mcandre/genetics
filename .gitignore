@@ -1,4 +1,3 @@
-hellogenetics
 *.exe
 *.o
 *.hi
@@ -13,3 +12,5 @@ dist/
 *.tix
 *-coverage
 Gemfile.lock
+tmp/
+hellogenetics

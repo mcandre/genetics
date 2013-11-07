@@ -33,6 +33,9 @@ coverage: hellogenetics-coverage.tix
 lint:
 	hlint .
 
+churn:
+	bundle exec churn
+
 package:
 	cabal configure
 	cabal sdist
