@@ -1,7 +1,7 @@
 guard :shell do
-  watch(/\.hs/) do |m|
+  watch(/^Makefile|.*\.hs$/) do |m|
     title = 'Compile'
-    eager = 'make'
+    eager 'make'
     status = ($?.success? && :success) || :failed
     n '', title, status
     ''
