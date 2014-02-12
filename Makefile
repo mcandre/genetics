@@ -2,7 +2,7 @@ all: test
 
 SOURCES=hellogenetics.hs genetics.hs
 
-COMPILE=ghc -O2 -Wall --make -threaded -rtsopts hellogenetics.hs -package base -package random-fu -package random-source
+COMPILE=ghc -O2 -Wall -fwarn-tabs --make -threaded -rtsopts hellogenetics.hs -package base -package random-fu -package random-source
 
 hellogenetics: $(SOURCES)
 	$(COMPILE)
