@@ -2,6 +2,9 @@
 
 {-# LANGUAGE TypeSynonymInstances #-}
 {-# LANGUAGE FlexibleInstances #-}
+{-# OPTIONS_GHC -fno-warn-orphans #-}
+
+module HelloGenetics where
 
 import Data.Random (runRVar)
 import Data.Random.List (randomElement)

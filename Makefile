@@ -1,17 +1,17 @@
 all: test
 
-SOURCES=hellogenetics.hs genetics.hs
+SOURCES=HelloGenetics.hs Genetics.hs
 
-COMPILE=ghc -O2 -Wall -fwarn-tabs --make -threaded -rtsopts hellogenetics.hs -package base -package random-fu -package random-source
+FLAGS=-O2 -Wall -fwarn-tabs --make -fforce-recomp -threaded -rtsopts -main-is HelloGenetics HelloGenetics.hs -package base -package random-fu -package random-source
 
 hellogenetics: $(SOURCES)
-	$(COMPILE)
+	ghc $(FLAGS) -o hellogenetics
 
 hellogenetics-profile: $(SOURCES)
-	$(COMPILE) -prof -auto-all -caf-all -o hellogenetics-profile
+	ghc $(FLAGS) -prof -auto-all -caf-all -o hellogenetics-profile
 
 hellogenetics-coverage: $(SOURCES)
-	$(COMPILE) -fhpc -o hellogenetics-coverage
+	ghc $(FLAGS) -fhpc -o hellogenetics-coverage
 
 test: hellogenetics
 	./hellogenetics +RTS -N
@@ -61,7 +61,7 @@ clean: cleanprofile
 	-rm *.hi
 	-rm -rf dist/*
 
-install: hellogenetics.hs genetics.hs
+install: HelloGenetics.hs Genetics.hs
 	cabal install --prefix=$$HOME --user
 
 uninstall:

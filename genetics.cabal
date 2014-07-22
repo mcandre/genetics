@@ -15,5 +15,5 @@ source-repository head
   location: https://github.com/mcandre/genetics
 
 Executable hellogenetics
-    Main-is:        hellogenetics.hs
+    Main-is:        HelloGenetics.hs
     Build-Depends:  base >= 4.3.1.0 && < 5, random-fu >= 0.1.4 && < 0.3, random-source >= 0.3.0.6, parallel >= 3.2.0.3
