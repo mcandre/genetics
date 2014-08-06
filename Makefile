@@ -4,31 +4,34 @@ SOURCES=HelloGenetics.hs Genetics.hs
 
 FLAGS=-O2 -Wall -fwarn-tabs --make -fforce-recomp -threaded -rtsopts -main-is HelloGenetics HelloGenetics.hs -package base -package random-fu -package random-source
 
-hellogenetics: $(SOURCES)
-	ghc $(FLAGS) -o hellogenetics
+bin/hellogenetics: $(SOURCES)
+	mkdir -p bin/
+	ghc $(FLAGS) -o bin/hellogenetics
 
-hellogenetics-profile: $(SOURCES)
-	ghc $(FLAGS) -prof -auto-all -caf-all -o hellogenetics-profile
+bin/hellogenetics-profile: $(SOURCES)
+	mkdir -p bin/
+	ghc $(FLAGS) -prof -auto-all -caf-all -o bin/hellogenetics-profile
 
-hellogenetics-coverage: $(SOURCES)
-	ghc $(FLAGS) -fhpc -o hellogenetics-coverage
+bin/hellogenetics-coverage: $(SOURCES)
+	mkdir -p bin/
+	ghc $(FLAGS) -fhpc -o bin/hellogenetics-coverage
 
-test: hellogenetics
-	./hellogenetics +RTS -N
+test: bin/hellogenetics
+	bin/hellogenetics +RTS -N
 
-hellogenetics-profile.hp: cleanprofile hellogenetics-profile
-	time ./hellogenetics-profile +RTS -N1 -p -hc
+hellogenetics-profile.hp: cleanprofile bin/hellogenetics-profile
+	time bin/hellogenetics-profile +RTS -N1 -p -hc
 
 profile: hellogenetics-profile.hp
 	hp2ps -c hellogenetics-profile.hp
 	ps2pdf hellogenetics-profile.ps hellogenetics-profile.pdf
 	open hellogenetics-profile.pdf
 
-hellogenetics-coverage.tix: hellogenetics-coverage
-	time ./hellogenetics-coverage +RTS -N
+hellogenetics-coverage.tix: bin/hellogenetics-coverage
+	time bin/hellogenetics-coverage +RTS -N
 
 coverage: hellogenetics-coverage.tix
-	hpc report hellogenetics-coverage
+	hpc report bin/hellogenetics-coverage
 
 lint:
 	hlint .
@@ -54,9 +57,7 @@ cleanprofile:
 clean: cleanprofile
 	-rm -rf .hpc
 	-rm *.tix
-	-rm *.exe
-	-rm hellogenetics
-	-rm *-coverage
+	-rm -rf bin/
 	-rm *.o
 	-rm *.hi
 	-rm -rf dist/*
