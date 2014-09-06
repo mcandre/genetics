@@ -33,8 +33,13 @@ hellogenetics-coverage.tix: bin/hellogenetics-coverage
 coverage: hellogenetics-coverage.tix
 	hpc report bin/hellogenetics-coverage
 
-lint:
+hlint:
 	hlint .
+
+lili:
+	bundle exec lili .
+
+lint: hlint lili
 
 churn:
 	bundle exec churn
