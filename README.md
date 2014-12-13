@@ -1,13 +1,25 @@
 # genetics - A Genetic Algorithm library in Haskell
 
-# Hackage
+# EXAMPLE
+
+```
+$ cabal update
+$ cabal install -p random-fu
+$ make
+./hellogenetics +RTS -N
+Hello World!
+```
+
+See [HelloGenetics.hs](https://github.com/mcandre/genetics/blob/master/HelloGenetics.hs) for more information.
+
+# HACKAGE
 
 http://hackage.haskell.org/package/genetics
 
 # REQUIREMENTS
 
- - [Haskell](http://www.haskell.org/)
- - [random-fu](http://hackage.haskell.org/package/random-fu)
+* [Haskell](http://www.haskell.org/)
+* [random-fu](http://hackage.haskell.org/package/random-fu)
 
 Install random-fu with `cabal install -p random-fu`.
 
@@ -28,30 +40,30 @@ Use `bundle` to install Guard.
 
 Start Guard in a shell, and it will automatically run unit tests when the source code changes:
 
-    $ guard
-        ...
+```
+$ guard
+...
+```
 
 ## Lint
 
 Keep the code tidy with HLint:
 
-    $ cabal install hlint
-    $ make lint
-
-# EXAMPLE
-
-    $ cabal update
-    $ cabal install -p random-fu
-    $ make
-    ./hellogenetics +RTS -N
-    Hello World!
+```
+$ cabal install hlint
+$ make lint
+```
 
 # Profiling
 
-    $ make profile
+```
+$ make profile
+```
 
 If profiling shows an error message, resolve by reinstalling the dependency libraries with `cabal install -p <library>`, as [lambdor](http://lambdor.net/?p=258) recommends.
 
 # Coverage
 
-    $ make coverage
+```
+$ make coverage
+```
