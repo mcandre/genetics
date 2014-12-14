@@ -1,10 +1,8 @@
-#!/usr/bin/env runhaskell
-
 {-# LANGUAGE TypeSynonymInstances #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# OPTIONS_GHC -fno-warn-orphans #-}
 
-module HelloGenetics where
+module Main where
 
 import Data.Random (runRVar)
 import Data.Random.List (randomElement)
@@ -12,7 +10,6 @@ import Data.Random.Source.DevRandom
 
 import Genetics
 import Control.Monad (replicateM)
--- import Data.Char (ord, chr)
 
 target :: String
 target = "Hello World!"
@@ -36,7 +33,8 @@ randomGene :: IO String
 randomGene = replicateM (length target) randomChar
 
 instance Gene String where
-  fitness gene = sum (zipWith (\t g -> if t == g then 1 else 0) target gene) / fromIntegral (length target)
+  fitness gene = sum correctScore / fromIntegral (length target)
+    where correctScore = zipWith (\t g -> if t == g then 1 else 0) target gene
 
   mutate gene = do
     i <- randomIndex
