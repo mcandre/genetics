@@ -4,8 +4,8 @@
 
 ```
 $ cabal update
-$ cabal install -p random-fu
-$ make
+$ cabal install
+$ cabal build
 ./hellogenetics +RTS -N
 Hello World!
 ```
@@ -30,40 +30,16 @@ https://github.com/mcandre/dotfiles/blob/master/.cabal/config#L24
 ## OPTIONAL
 
 * [Ruby](https://www.ruby-lang.org/) 1.9+
-* [Guard](http://guardgem.org/) 1.8.2+
-
-Use `bundle` to install Guard.
 
 # DEVELOPMENT
 
-## Guard
-
-Start Guard in a shell, and it will automatically run unit tests when the source code changes:
-
-```
-$ guard
-...
-```
-
 ## Lint
 
-Keep the code tidy with HLint:
+Keep the code tidy:
 
 ```
 $ cabal install hlint
-$ make lint
-```
-
-# Profiling
-
-```
-$ make profile
-```
-
-If profiling shows an error message, resolve by reinstalling the dependency libraries with `cabal install -p <library>`, as [lambdor](http://lambdor.net/?p=258) recommends.
-
-# Coverage
-
-```
-$ make coverage
+$ hlint .
+$ bundle install
+$ lili .
 ```
