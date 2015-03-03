@@ -23,3 +23,5 @@ cabal-dev
 .cabal-sandbox/
 cabal.sandbox.config
 cabal.config
+node_modules/
+npm-debug.log

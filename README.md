@@ -1,4 +1,4 @@
-# genetics - A Genetic Algorithm library in Haskell
+# genetics - a Genetic Algorithm library in Haskell
 
 # EXAMPLE
 
