@@ -6,7 +6,7 @@
 $ cabal update
 $ cabal install
 $ cabal build
-./hellogenetics +RTS -N
+$ ./hellogenetics +RTS -N
 Hello World!
 ```
 
