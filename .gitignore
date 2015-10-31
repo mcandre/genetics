@@ -1,27 +1,58 @@
-bin/
-*.o
-*.hi
-*.aux
-*.prof
-*.pdf
-*.ps
-*.hp
-*-profile
-.hpc/
-*.tix
-*-coverage
-Gemfile.lock
-tmp/
+# Created by https://www.gitignore.io/api/haskell,ruby
+
+### Haskell ###
 dist
 cabal-dev
+*.o
+*.hi
 *.chi
 *.chs.h
 *.dyn_o
 *.dyn_hi
-.virtualenv
+.hpc
 .hsenv
 .cabal-sandbox/
 cabal.sandbox.config
-cabal.config
-node_modules/
-npm-debug.log
+*.prof
+*.aux
+*.hp
+.stack-work/
+
+
+### Ruby ###
+*.gem
+*.rbc
+/.config
+/coverage/
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+/tmp/
+
+## Specific to RubyMotion:
+.dat*
+.repl_history
+build/
+
+## Documentation cache and generated files:
+/.yardoc/
+/_yardoc/
+/doc/
+/rdoc/
+
+## Environment normalisation:
+/.bundle/
+/vendor/bundle
+/lib/bundler/man/
+
+# for a library or gem, you might want to ignore these files since the code is
+# intended to run in multiple environments; otherwise, check them in:
+Gemfile.lock
+# .ruby-version
+# .ruby-gemset
+
+# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
+.rvmrc
