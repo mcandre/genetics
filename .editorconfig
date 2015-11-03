@@ -19,7 +19,7 @@ indent_style = space
 indent_size = 2
 indent_brace_style = K&R
 curly_bracket_next_line = false
-continuation_indent_size 4
+continuation_indent_size = 4
 
 # Makefiles
 [{Makefile*,*.mf}]
@@ -27,6 +27,10 @@ indent_style = tab
 
 # Markdown
 [{*.md,*.markdown}]
+indent_size = none
+
+# PEP8
+[*.py]
 indent_size = 4
 
 # JavaScript
@@ -38,5 +42,5 @@ quote_type = single
 indent_size = none
 
 # Windows files
-[{*.bat,*reg,*.ps1,*.vbs,*.cs,*.fs,*.ahk}]
+[{*.bat,*reg,*.ps1,*.vbs,*.cs,*.csproj,*.fs,*.sln,*.xaml*,*.ahk}]
 end_of_line = crlf
