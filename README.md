@@ -21,15 +21,11 @@ http://hackage.haskell.org/package/genetics
 * [Haskell](http://www.haskell.org/)
 * [random-fu](http://hackage.haskell.org/package/random-fu)
 
-Install random-fu with `cabal install -p random-fu`.
-
-Recommend configuring cabal to default to profiled libraries:
-
-https://github.com/mcandre/dotfiles/blob/master/.cabal/config#L24
-
 ## OPTIONAL
 
-* [Ruby](https://www.ruby-lang.org/) 2.3+
+* [ruby](https://www.ruby-lang.org/) 2.3+
+* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
+* [editorconfig-tools](https://www.npmjs.com/package/editorconfig-tools)
 
 # DEVELOPMENT
 
