@@ -4,6 +4,6 @@ hlint:
 	hlint .
 
 editorconfig:
-	sh editorconfig.sh
+	flcl . | xargs -n 100 editorconfig-cli check
 
 lint: hlint editorconfig

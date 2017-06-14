@@ -25,7 +25,8 @@ http://hackage.haskell.org/package/genetics
 
 * [ruby](https://www.ruby-lang.org/) 2.3+
 * [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
-* [editorconfig-tools](https://www.npmjs.com/package/editorconfig-tools)
+* [editorconfig-cli](https://github.com/amyboyd/editorconfig-cli) (e.g. `go get github.com/amyboyd/editorconfig-cli`)
+* [flcl](https://github.com/mcandre/flcl) (e.g. `go get github.com/mcandre/flcl/...`)
 
 # DEVELOPMENT
 
