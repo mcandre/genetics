@@ -4,9 +4,7 @@
 
 module Main where
 
-import Data.Random (runRVar)
-import Data.Random.List (randomElement)
-import Data.Random.Source.DevRandom
+import System.Random as Rand
 
 import Genetics
 import Control.Monad (replicateM)
@@ -17,17 +15,11 @@ target = "Hello World!"
 generations :: Int
 generations = (2 :: Int) ^ (16 :: Int)
 
-indexSpace :: [Int]
-indexSpace = [0 .. length target - 1]
-
 randomIndex :: IO Int
-randomIndex = runRVar (randomElement indexSpace) DevRandom
-
-charSpace :: String
-charSpace = [' ' .. '~']
+randomIndex = getStdRandom $ randomR (0, length target - 1)
 
 randomChar :: IO Char
-randomChar = runRVar (randomElement charSpace) DevRandom
+randomChar = getStdRandom $ randomR (' ', '~')
 
 randomGene :: IO String
 randomGene = replicateM (length target) randomChar

@@ -2,41 +2,39 @@
 
 # EXAMPLE
 
-```
-$ cabal update
-$ cabal install
-$ cabal build
-$ ./hellogenetics +RTS -N
+```console
+$ cabal install --only-dependencies
+$ shake
+$ hellogenetics
 Hello World!
 ```
 
-See [HelloGenetics.hs](https://github.com/mcandre/genetics/blob/master/HelloGenetics.hs) for more information.
-
-# HACKAGE
+# DOCUMENTATION
 
 http://hackage.haskell.org/package/genetics
 
-# REQUIREMENTS
+# RUNTIME REQUIREMENTS
+
+(None)
+
+# BUILDTIME REQUIREMENTS
 
 * [Haskell](http://www.haskell.org/)
-* [random-fu](http://hackage.haskell.org/package/random-fu)
 
-## OPTIONAL
+## Recommended
 
-* [ruby](https://www.ruby-lang.org/) 2.3+
-* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
-* [editorconfig-cli](https://github.com/amyboyd/editorconfig-cli) (e.g. `go get github.com/amyboyd/editorconfig-cli`)
-* [flcl](https://github.com/mcandre/flcl) (e.g. `go get github.com/mcandre/flcl/...`)
+* [shake](https://shakebuild.com/) (e.g., `cabal install shake`)
 
-# DEVELOPMENT
+# BUILT
 
-## Lint
+```console
+$ shake
+```
+
+# LINT
 
 Keep the code tidy:
 
-```
-$ cabal install hlint
-$ hlint .
-$ bundle install
-$ lili .
+```console
+$ shake lint
 ```
