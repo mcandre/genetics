@@ -38,3 +38,9 @@ Keep the code tidy:
 ```console
 $ shake lint
 ```
+
+# TEST
+
+```console
+$ shake test
+```
