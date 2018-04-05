@@ -3,8 +3,6 @@
 # EXAMPLE
 
 ```console
-$ cabal install --only-dependencies
-$ shake
 $ hellogenetics
 Hello World!
 ```
@@ -26,9 +24,10 @@ http://hackage.haskell.org/package/genetics
 * [shake](https://shakebuild.com/) (e.g., `cabal install shake`)
 * [hlint](https://hackage.haskell.org/package/hlint) (e.g., `cabal install happy; cabal install hlint`)
 
-# BUILT
+# BUILD
 
 ```console
+$ cabal install --only-dependencies --enable-tests
 $ shake
 ```
 
