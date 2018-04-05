@@ -22,7 +22,7 @@ library
 
   exposed-modules: Genetics
 
-  ghc-options: -Wall
+  ghc-options: -O2 -Wall -fwarn-tabs
   hs-source-dirs: src
 
 executable hellogenetics
@@ -32,5 +32,5 @@ executable hellogenetics
     parallel          >= 3.2.0.3 && <4
 
   main-is: HelloGenetics.hs
-  ghc-options: -Wall
+  ghc-options: -O2 -Wall -fwarn-tabs
   hs-source-dirs: src
