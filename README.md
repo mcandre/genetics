@@ -63,3 +63,9 @@ $ shake lint
 ```console
 $ shake test
 ```
+
+# PUBLISH
+
+```console
+$ shake publish
+```
