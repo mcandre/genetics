@@ -11,6 +11,12 @@ Hello World!
 
 http://hackage.haskell.org/package/genetics
 
+# INSTALL (HACKAGE)
+
+```console
+$ cabal install genetics
+```
+
 # RUNTIME REQUIREMENTS
 
 (None)
@@ -27,8 +33,20 @@ http://hackage.haskell.org/package/genetics
 # BUILD
 
 ```console
-$ cabal install --only-dependencies --enable-tests
+$ cabal install --only-dependencies --enable-tests --enable-documentation
 $ shake
+```
+
+# INSTALL (LOCAL REPOSITORY)
+
+```console
+$ shake install
+```
+
+# UNINSTALL
+
+```console
+$ shake uninstall
 ```
 
 # LINT
