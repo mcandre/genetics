@@ -7,10 +7,7 @@ main = do
   homeDir <- Dir.getHomeDirectory
 
   shakeArgs shakeOptions{ shakeFiles="dist" } $ do
-    want ["install"]
-
-    phony "install" $
-      need ["dist/bin/hellogenetics" <.> exe]
+    want ["dist/bin/hellogenetics" <.> exe]
 
     "dist/bin/hellogenetics" <.> exe %> \out ->
       cmd_ "cabal" "install" "--bindir" "dist/bin"
@@ -24,6 +21,9 @@ main = do
     phony "test" $ do
       need ["dist/bin/hellogenetics" <.> exe]
       cmd_ ("dist/bin/hellogenetics" <.> exe)
+
+    phony "install" $
+      cmd_ "cabal" "install"
 
     phony "uninstall" $
       removeFilesAfter homeDir ["/.cabal/bin/hellogenetics" <.> exe]
