@@ -40,7 +40,7 @@ main = do
       need ["build", "haddock"]
       cmd_ "cabal" "sdist"
 
-    phony "sdist" $ do
+    phony "sdist" $
       need [tarball]
 
     phony "publish" $ do
