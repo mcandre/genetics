@@ -33,7 +33,8 @@ $ cabal install genetics
 # BUILD
 
 ```console
-$ cabal install --only-dependencies --enable-tests --enable-documentation
+$ cabal install --only-dependencies --enable-documentation
+$ cabal install --only-dependencies --enable-tests
 $ shake
 ```
 
