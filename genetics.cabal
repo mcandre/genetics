@@ -36,3 +36,16 @@ executable hellogenetics
   main-is: HelloGenetics.hs
   ghc-options: -Wall -fwarn-tabs
   hs-source-dirs: src
+
+test-suite reference
+  build-depends:
+    base                        >= 4.3.1.0 && < 5,
+    hlint                       >= 2.1.10 && < 3,
+    shake                       >= 0.16.4 && < 0.17,
+    random                      >= 1.1 && < 2,
+    parallel                    >= 3.2.0.3 && < 4
+
+  ghc-options:        -Wall -fwarn-tabs
+  hs-source-dirs:     src
+  main-is:            HelloGenetics.hs
+  type:               exitcode-stdio-1.0
