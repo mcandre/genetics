@@ -23,7 +23,8 @@ $ cabal install genetics
 
 # BUILDTIME REQUIREMENTS
 
-* [Haskell](http://www.haskell.org/)
+* [GHC Haskell](http://www.haskell.org/) 8+
+* [happy](https://hackage.haskell.org/package/happy) (e.g., `cabal install happy`)
 
 # BUILD
 
