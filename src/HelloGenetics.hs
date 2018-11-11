@@ -25,18 +25,18 @@ randomGene :: IO String
 randomGene = replicateM (length target) randomChar
 
 instance Gene String where
-  fitness gene = sum correctScore / fromIntegral (length target)
-    where correctScore = zipWith (\t g -> if t == g then 1 else 0) target gene
+    fitness gene = sum correctScore / fromIntegral (length target)
+        where correctScore = zipWith (\t g -> if t == g then 1 else 0) target gene
 
-  mutate gene = do
-    i <- randomIndex
-    c <- randomChar
-    return $ take i gene ++ [c] ++ drop (i + 1) gene
+    mutate gene = do
+        i <- randomIndex
+        c <- randomChar
+        return $ take i gene ++ [c] ++ drop (i + 1) gene
 
-  species _ = 8
+    species _ = 8
 
 main :: IO ()
 main = do
-  pool <- replicateM (species [""]) randomGene
-  pool' <- evolve generations pool
-  putStrLn $ best pool'
+    pool <- replicateM (species [""]) randomGene
+    pool' <- evolve generations pool
+    putStrLn $ best pool'
